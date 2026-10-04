@@ -85,3 +85,51 @@ Don't lose:
 - all five policies
 - sensitive data purging is specifically about privacy/security
 
+### 8. Agentic RAG
+
+**Question:** Explain the difference between traditional RAG and Agentic RAG to someone who does not know what either means.
+
+**Expected:** Traditional RAG retrieves information and gives it to the model to help answer a question. In Agentic RAG, the agent has more control over the retrieval process. It can decide what information it needs, retrieve it, assess whether it is useful, and search again if needed.
+
+Don't lose:
+- retrieval in Agentic RAG is dynamic rather than a one-time fixed step
+- the agent can evaluate what it retrieves and retrieve again
+- keep the explanation understandable without changing the mechanism
+
+### 9. Evaluating Agentic AI
+
+**Question:** Why does the paper argue that checking whether an agent got the final answer right is not enough to evaluate it?
+
+**Expected:** Because an agent can reach an answer through a flawed or unsafe process. The paper argues that evaluation should also examine things like tool use, memory and context management, planning, and safe interaction. These parts of the agent's behaviour should be observable and logged.
+
+Don't lose:
+- evaluation includes the process, not only the final result
+- tool use, memory/context, planning, and safe interaction matter
+- the reasoning/process should be observable and logged'
+
+### 10. Adding more agents
+
+**Question:** According to the paper, does adding more agents necessarily make an Agentic AI system perform better? Explain why or why not.
+
+**Expected:** No. Adding more agents can increase complexity and sometimes reduce efficiency or lead to contradictory behaviour. The paper points to problems such as unpredictable interactions, limited composability, and the lack of standardized communication and coordination between agents.
+
+Don't lose:
+- more agents do not automatically mean better performance
+- increased agent count can reduce efficiency or create conflicting behaviour
+- coordination and communication are part of the problem
+
+### 11. Research trajectory
+
+**Question:** What does the paper see as the main priorities for Agentic AI in the short, medium, and long term?
+
+**Expected:** In the short term, the focus is on foundations such as persistent memory, better evaluation, coordination, and basic security. In the medium term, the focus shifts toward reasoning with smaller models, online learning with
+long-term memory, safer multi-agent systems, and better transparency and auditing. In the long term, the paper expects work toward autonomous systems
+in areas such as scientific discovery, alongside value alignment, accountability, and environmental sustainability.
+
+Don't lose:
+- short term: 1–2 years
+- medium term: 3–5 years
+- long term: more than 5 years
+- fully autonomous scientific systems are a long-term direction, not a current
+  demonstrated capability
+

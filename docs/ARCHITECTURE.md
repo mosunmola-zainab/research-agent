@@ -476,7 +476,7 @@ I want an evaluation harness early because we are testing models and
 will probably change prompts, retrieval, chunking, parsers, and
 embeddings as we build.
 
-The detailed harness can live in `docs/EVALUATION.md`.
+The detailed harness can live in `brain/EVALUATION.md`.
 
 At minimum, I want to test:
 

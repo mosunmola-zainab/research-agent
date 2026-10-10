@@ -3,7 +3,7 @@
 __pycache__/
 *.pyc
 CLAUDE.local.md
-evaluation/papers/
-evaluation/parsed/
-evaluation/pilots/
-evaluation/runs/
+brain/evaluation/papers/
+brain/evaluation/parsed/
+brain/evaluation/pilots/
+brain/evaluation/runs/

@@ -1,3 +1,4 @@
+import os
 import sys
 from pathlib import Path
 
@@ -10,6 +11,9 @@ OUTPUT_NAME = "paper_01"
 
 
 def main() -> None:
+    # Paths are relative to brain/, so the launch folder must not matter.
+    os.chdir(Path(__file__).resolve().parent)
+
     converter = DocumentConverter()
     result = converter.convert(PDF_PATH)
     document = result.document

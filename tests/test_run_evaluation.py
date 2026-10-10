@@ -10,16 +10,16 @@ from unittest import mock
 import httpx
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-# The scripts folder isn't a package, so make it importable for the tests.
-sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
+# The brain folder isn't a package, so make it importable for the tests.
+sys.path.insert(0, str(PROJECT_ROOT / "brain"))
 
 import run_evaluation
 
 API_KEY = "sk-test-key-must-not-be-saved"
 MODEL = "test/model:free"
-REAL_PAPER = PROJECT_ROOT / "evaluation/parsed/paper_01.md"
-REAL_QUESTIONS = PROJECT_ROOT / "evaluation/ground_truth/paper_01.md"
-PRIVATE_ANALYSIS_CRITERIA = PROJECT_ROOT / "evaluation/ground_truth/full_paper_analysis.md"
+REAL_PAPER = PROJECT_ROOT / "brain/evaluation/parsed/paper_01.md"
+REAL_QUESTIONS = PROJECT_ROOT / "brain/evaluation/ground_truth/paper_01.md"
+PRIVATE_ANALYSIS_CRITERIA = PROJECT_ROOT / "brain/evaluation/ground_truth/full_paper_analysis.md"
 EXACT_ANALYSIS_INSTRUCTION = (
     "Read the attached research paper carefully and provide a comprehensive analysis of it. Ground your analysis "
     "in the paper, distinguish the authors' claims from your own interpretations, and explicitly acknowledge "

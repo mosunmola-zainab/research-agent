@@ -465,6 +465,9 @@ def main() -> None:
     parser.add_argument("model", help="OpenRouter model ID, e.g. nvidia/nemotron-3-super-120b-a12b:free")
     args = parser.parse_args()
 
+    # Data paths are relative to brain/ and saved in experiment identities, so the launch folder must not matter.
+    os.chdir(Path(__file__).resolve().parent)
+
     load_dotenv()
     api_key = os.getenv("OPENROUTER_API_KEY")
     if not api_key:

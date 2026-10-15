@@ -2,7 +2,7 @@ import argparse
 import json
 from pathlib import Path
 
-from run_evaluation import load_attempts
+from brain.run_evaluation import load_attempts
 
 
 def load_config(experiment_dir: Path) -> dict:

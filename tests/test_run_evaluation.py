@@ -1,6 +1,7 @@
 import contextlib
 import io
 import json
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -9,11 +10,9 @@ from unittest import mock
 
 import httpx
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-# The brain folder isn't a package, so make it importable for the tests.
-sys.path.insert(0, str(PROJECT_ROOT / "brain"))
+from brain import run_evaluation
 
-import run_evaluation
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 API_KEY = "sk-test-key-must-not-be-saved"
 MODEL = "test/model:free"
@@ -386,6 +385,24 @@ class RunExperimentTests(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             self.run_with([])
+
+
+class PackageImportTests(unittest.TestCase):
+    # A fresh interpreter, so nothing this test process has already imported can hide a broken import.
+    def run_from_project_root(self, *arguments: str) -> subprocess.CompletedProcess:
+        return subprocess.run(
+            [sys.executable, *arguments], cwd=PROJECT_ROOT, capture_output=True, text=True, timeout=120
+        )
+
+    def test_brain_modules_import_as_a_package(self):
+        result = self.run_from_project_root("-c", "import brain.run_evaluation, brain.extract_responses")
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_brain_scripts_run_as_modules_from_the_project_root(self):
+        for module in ("brain.run_evaluation", "brain.extract_responses"):
+            result = self.run_from_project_root("-m", module, "--help")
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertIn("usage:", result.stdout)
 
 
 if __name__ == "__main__":

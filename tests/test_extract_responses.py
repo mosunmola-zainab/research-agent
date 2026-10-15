@@ -7,11 +7,7 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-# The brain folder isn't a package, so make it importable for the tests.
-sys.path.insert(0, str(PROJECT_ROOT / "brain"))
-
-import extract_responses
+from brain import extract_responses
 
 EXPERIMENT_ID = "paper_01__test_model__abc123"
 QUESTIONS = {

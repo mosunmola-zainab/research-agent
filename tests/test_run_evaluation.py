@@ -17,6 +17,9 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 API_KEY = "sk-test-key-must-not-be-saved"
 MODEL = "test/model:free"
 REAL_PAPER = PROJECT_ROOT / "brain/evaluation/parsed/paper_01.md"
+MISSING_PAPER_REASON = (
+    "needs the parsed paper at brain/evaluation/parsed/paper_01.md, which is local-only and not in Git"
+)
 REAL_QUESTIONS = PROJECT_ROOT / "brain/evaluation/ground_truth/paper_01.md"
 PRIVATE_ANALYSIS_CRITERIA = PROJECT_ROOT / "brain/evaluation/ground_truth/full_paper_analysis.md"
 EXACT_ANALYSIS_INSTRUCTION = (
@@ -86,7 +89,7 @@ class QuestionAndPromptTests(unittest.TestCase):
             "What does the paper see as the main priorities for Agentic AI in the short, medium, and long term?",
         )
 
-    @unittest.skipUnless(REAL_PAPER.exists(), "parsed paper not available")
+    @unittest.skipUnless(REAL_PAPER.exists(), MISSING_PAPER_REASON)
     def test_prompts_never_contain_expected_answers(self):
         paper = REAL_PAPER.read_text(encoding="utf-8")
         tasks = run_evaluation.build_tasks(paper, run_evaluation.load_questions(REAL_QUESTIONS))
@@ -104,7 +107,7 @@ class QuestionAndPromptTests(unittest.TestCase):
             for line in expected_lines:
                 self.assertNotIn(line, task["prompt"], f"{task['task_id']} contains expected answer text")
 
-    @unittest.skipUnless(REAL_PAPER.exists(), "parsed paper not available")
+    @unittest.skipUnless(REAL_PAPER.exists(), MISSING_PAPER_REASON)
     def test_question_prompt_matches_approved_template(self):
         paper = REAL_PAPER.read_text(encoding="utf-8")
         question = "What does the paper see as the main priorities for Agentic AI in the short, medium, and long term?"
@@ -127,7 +130,7 @@ class QuestionAndPromptTests(unittest.TestCase):
             f"{EXACT_ANALYSIS_INSTRUCTION}",
         )
 
-    @unittest.skipUnless(REAL_PAPER.exists(), "parsed paper not available")
+    @unittest.skipUnless(REAL_PAPER.exists(), MISSING_PAPER_REASON)
     def test_prompts_never_contain_private_analysis_criteria(self):
         paper = REAL_PAPER.read_text(encoding="utf-8")
         tasks = run_evaluation.build_tasks(paper, run_evaluation.load_questions(REAL_QUESTIONS))
